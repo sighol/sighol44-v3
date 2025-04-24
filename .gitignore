@@ -1,0 +1,7 @@
+*.kicad*.lck
+fp-info-cache
+*-backups
+backups
+*auto_saved_files*
+svg
+production
