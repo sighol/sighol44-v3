@@ -301,7 +301,7 @@
 		)
 	)
 	(fp_text user "${REFERENCE}"
-		(at 0 -2.75 0)
+		(at 0 -3 0)
 		(unlocked yes)
 		(layer "B.SilkS")
 		(uuid "9c7340f4-d8e7-4728-8470-d94c4e28dfa1")
