@@ -12,6 +12,8 @@ Search for `JLC` in the plugins tab.
 
 # Inkscape edge cut tutorial
 
+![](docs/inkscape_outline.png)
+
 ## Export SVG from KiCad
 - In KiCad, *File* -> *Print*
 - Select the Fab, Silkscreen, and User.Drawings layers.
@@ -22,7 +24,7 @@ Search for `JLC` in the plugins tab.
 - Open Edit ->, Preference, and select the *Imported Images* tab.
 - Change the Craete resolution to about 500 dpi and close the preferences window.
 - Then select (S) the white background and delete it.
-- Then select (S) everything else.s
+- Then select (S) everything else.
 - Click on Edit -> Make a Bitmap copy.
 - Then move the bitmap copy to the center of the screen and delete all the other paths
 
@@ -30,8 +32,6 @@ Another alternative is to create a new layer, and move all the paths into this l
 Snapping will work better when drawing the initial bezier curve, but I don't think it is worth it.
 
 ## Draw outline
-
-![](docs/inkscape_outline.png)
 
 - Use the **Pen Tool** (B) to draw an outline around the board. Use straight lines.b
 - Hold down CTRL to draw straight lines.
@@ -65,6 +65,7 @@ Snapping will work better when drawing the initial bezier curve, but I don't thi
 - Use Import scale 1.33 and set layer to Edge.Cuts, and click OK.
 - It is useful to select the outline and press M to move it around using the arrow keys. Press ENTER to confirm.
 - You will have to iterate. If you create a big fill zone (select F.Cu and fill with ground), and then fill with **B**, you can use that as a guide when deleting and adding back the new edge cut.
+- Alternatively, after placing it, notice
 
 It is easy to place the new export on the of the previous export and then delete the previous, for placement.
 
@@ -72,3 +73,11 @@ It is easy to place the new export on the of the previous export and then delete
 ## Tips and tricks with design
 
 - The bigger the outline, the easier it will be to place rubber feet so that it doesn't wobble.
+- Place the grid on the top-left key. `Place` -> `Grid`.
+- Guideline: Horizontal traces are blue. Vertical traces are red.
+- In **PCB Editor**:
+    - F8 to apply from schematics
+    - B to build fill zones.
+    - Ctrl+Shift+F to import graphics.
+    - Top Copper **PgUp**
+    - Bottom Copper **PgDown**
