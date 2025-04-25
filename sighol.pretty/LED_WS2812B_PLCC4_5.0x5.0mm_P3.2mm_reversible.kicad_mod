@@ -8,7 +8,7 @@
 	(property "Reference" "REF**"
 		(at 0 -3.5 0)
 		(layer "F.SilkS")
-		(uuid "29976fa0-918e-48c1-ba81-319324267df7")
+		(uuid "8309749a-48cd-4854-b4cc-5a10c97a09fb")
 		(effects
 			(font
 				(size 1 1)
@@ -19,7 +19,7 @@
 	(property "Value" "LED_WS2812B_PLCC4_5.0x5.0mm_P3.2mm_reversible"
 		(at 0 4 0)
 		(layer "F.Fab")
-		(uuid "11f34c85-b80f-46bd-b71d-beeef7ef25a2")
+		(uuid "bd4b9f94-8912-4bfe-8af2-136a4eb23dc1")
 		(effects
 			(font
 				(size 1 1)
@@ -32,7 +32,7 @@
 		(unlocked yes)
 		(layer "F.Fab")
 		(hide yes)
-		(uuid "af8ebc25-09f5-4728-90c8-7ad585d30554")
+		(uuid "a9032df5-71f0-4952-9724-2fbea6ebe63e")
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -45,7 +45,7 @@
 		(unlocked yes)
 		(layer "F.Fab")
 		(hide yes)
-		(uuid "e29d4fdc-7eec-4404-9165-4a75e440ba73")
+		(uuid "551f237f-d53c-4089-9873-98a36baf6f82")
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -123,6 +123,56 @@
 		)
 		(layer "F.SilkS")
 		(uuid "fde6eec1-7c4a-4028-8baf-43dcaa915462")
+	)
+	(fp_line
+		(start -3.5 2.3)
+		(end -3.5 -2.75)
+		(stroke
+			(width 0.12)
+			(type default)
+		)
+		(layer "B.SilkS")
+		(uuid "db3c4b3d-a081-4bc0-8b36-35f00ff4fcc6")
+	)
+	(fp_line
+		(start -3.05 2.75)
+		(end -3.5 2.3)
+		(stroke
+			(width 0.12)
+			(type default)
+		)
+		(layer "B.SilkS")
+		(uuid "cd76b42e-ec71-41c6-82ea-5b1110dd0745")
+	)
+	(fp_line
+		(start 3.5 -2.75)
+		(end -3.5 -2.75)
+		(stroke
+			(width 0.12)
+			(type solid)
+		)
+		(layer "B.SilkS")
+		(uuid "f7cc0b0f-383f-47ed-b537-7ca11a8a32a1")
+	)
+	(fp_line
+		(start 3.5 -2.75)
+		(end 3.5 2.75)
+		(stroke
+			(width 0.12)
+			(type default)
+		)
+		(layer "B.SilkS")
+		(uuid "0e8d4122-f476-4ff4-a32f-672a6839c9b9")
+	)
+	(fp_line
+		(start 3.5 2.75)
+		(end -3.05 2.75)
+		(stroke
+			(width 0.12)
+			(type solid)
+		)
+		(layer "B.SilkS")
+		(uuid "78b46978-a6a3-4118-a935-b475b2ce4c74")
 	)
 	(fp_line
 		(start -3.45 -2.75)
@@ -235,6 +285,32 @@
 				(size 0.8 0.8)
 				(thickness 0.15)
 			)
+		)
+	)
+	(fp_text user "1"
+		(at 4 -1.6 0)
+		(unlocked yes)
+		(layer "B.SilkS")
+		(uuid "74701e40-e145-4eea-85cf-6f2cddfb88fd")
+		(effects
+			(font
+				(size 0.8 0.8)
+				(thickness 0.15)
+			)
+			(justify mirror)
+		)
+	)
+	(fp_text user "${REFERENCE}"
+		(at 0 -2.75 0)
+		(unlocked yes)
+		(layer "B.SilkS")
+		(uuid "9c7340f4-d8e7-4728-8470-d94c4e28dfa1")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.1)
+			)
+			(justify bottom mirror)
 		)
 	)
 	(fp_text user "${REFERENCE}"

@@ -85,3 +85,4 @@ It is easy to place the new export on the of the previous export and then delete
     - Bottom Copper **PgDown**
     - V: Toggle top and bottom copper layer
     - Tools -> Update Footprints from Library: Take them all!
+    - Text fields support [variables substitiution](https://docs.kicad.org/master/id/eeschema/eeschema_advanced.html#:~:text=KiCad%20supports%20text%20variables%2C%20which,schematic%20or%20board%20setup%20dialogs.)
