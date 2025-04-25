@@ -58,6 +58,28 @@
 		(start -9 -11.75)
 		(end 9 11.75)
 		(stroke
+			(width 0.1)
+			(type solid)
+		)
+		(fill no)
+		(layer "F.SilkS")
+		(uuid "6c4162dc-1b73-42ef-848e-3539f8b6c671")
+	)
+	(fp_rect
+		(start -9 -11.75)
+		(end 9 11.75)
+		(stroke
+			(width 0.1)
+			(type solid)
+		)
+		(fill no)
+		(layer "B.SilkS")
+		(uuid "cac24dd7-30a9-41b4-b130-c04b2f61f537")
+	)
+	(fp_rect
+		(start -9 -11.75)
+		(end 9 11.75)
+		(stroke
 			(width 0.12)
 			(type solid)
 		)
