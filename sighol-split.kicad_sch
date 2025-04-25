@@ -4599,7 +4599,7 @@
 				(justify right)
 			)
 		)
-		(property "Footprint" "Capacitor_THT:CP_Radial_D5.0mm_P2.00mm"
+		(property "Footprint" "sighol:CP_Radial_D5.0mm_P2.00mm"
 			(at 35.56 142.24 0)
 			(effects
 				(font

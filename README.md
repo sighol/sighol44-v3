@@ -2,6 +2,8 @@
 
 ![](docs/pcb.png)
 
+![](docs/render.png)
+
 # Installation
 
 Install both `kicad` and `kicad-library` from the OS package repository.
