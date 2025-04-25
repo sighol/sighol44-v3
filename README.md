@@ -83,3 +83,5 @@ It is easy to place the new export on the of the previous export and then delete
     - Ctrl+Shift+F to import graphics.
     - Top Copper **PgUp**
     - Bottom Copper **PgDown**
+    - V: Toggle top and bottom copper layer
+    - Tools -> Update Footprints from Library: Take them all!
