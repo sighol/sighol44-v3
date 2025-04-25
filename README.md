@@ -1,5 +1,7 @@
 # Sighol-44 v3
 
+![](docs/pcb.png)
+
 # Installation
 
 Install both `kicad` and `kicad-library` from the OS package repository.
