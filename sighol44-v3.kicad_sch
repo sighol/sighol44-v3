@@ -2023,6 +2023,16 @@
 	)
 	(wire
 		(pts
+			(xy 44.45 123.19) (xy 44.45 119.38)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "0d138baa-57e1-42fa-88a6-4bccfbd43289")
+	)
+	(wire
+		(pts
 			(xy 107.95 157.48) (xy 44.45 157.48)
 		)
 		(stroke
@@ -2333,7 +2343,7 @@
 	)
 	(wire
 		(pts
-			(xy 44.45 127) (xy 44.45 142.24)
+			(xy 44.45 130.81) (xy 44.45 142.24)
 		)
 		(stroke
 			(width 0)
@@ -7236,7 +7246,7 @@
 	)
 	(symbol
 		(lib_id "Device:R")
-		(at 44.45 123.19 0)
+		(at 44.45 127 0)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -7245,7 +7255,7 @@
 		(fields_autoplaced yes)
 		(uuid "f13654d7-41d1-439c-9f35-c868ebbd0d40")
 		(property "Reference" "R1"
-			(at 46.99 121.9199 0)
+			(at 46.99 125.7299 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -7254,7 +7264,7 @@
 			)
 		)
 		(property "Value" "R"
-			(at 46.99 124.4599 0)
+			(at 46.99 128.2699 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -7263,7 +7273,7 @@
 			)
 		)
 		(property "Footprint" "sighol:R_Axial_DIN0207_L6.3mm_D2.5mm_P7.62mm_Horizontal"
-			(at 42.672 123.19 90)
+			(at 42.672 127 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -7272,7 +7282,7 @@
 			)
 		)
 		(property "Datasheet" "~"
-			(at 44.45 123.19 0)
+			(at 44.45 127 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -7281,7 +7291,7 @@
 			)
 		)
 		(property "Description" ""
-			(at 44.45 123.19 0)
+			(at 44.45 127 0)
 			(effects
 				(font
 					(size 1.27 1.27)
