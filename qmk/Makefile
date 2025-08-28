@@ -1,4 +1,4 @@
-QMK_HOME = ${HOME}/workspace/keyboards/qmk_firmware
+QMK_HOME = ${HOME}/workspace/private/keyboards/qmk_firmware
 KEYBOARD = sighol44
 
 BUILD = $(QMK_HOME)/.build/sighol44_default.uf2

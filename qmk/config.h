@@ -37,4 +37,4 @@
 
 #define NO_USB_STARTUP_CHECK
 
-#define COMBO_TERM 100
+// #define COMBO_TERM 100
