@@ -8,14 +8,13 @@
 
 enum Layers {
     BASE,
-    NO_MOD_TAP,
     CLMK,
     LEFT,
     RGHT,
     SETTINGS,
     MOUSE,
-    TEMP,
-    SYMBOLS,
+    QUICK_NUMBERS,
+    QUICK_SYMBOLS,
 };
 
 enum custom_keycodes {
@@ -35,25 +34,13 @@ enum custom_keycodes {
 
 
 // #define MT_D MT(MOD_LSFT, KC_D)
-
-// #define MT_J LT(RGHT, KC_J)
-// #define MT_K MT(MOD_LSFT, KC_K)
+#define MT_J LT(QUICK_NUMBERS, KC_J)
+#define MT_K MT(MOD_LSFT, KC_K)
+// #define MT_K MT(QUICK_SYMBOLS, KC_K)
 
 #define MT_D KC_D
-#define MT_J KC_J
-#define MT_K KC_K
-
-
-const uint16_t PROGMEM number_combo[] = {KC_H, KC_J, COMBO_END};
-const uint16_t PROGMEM symbol_combo[] = {KC_N, KC_M, COMBO_END};
-const uint16_t PROGMEM number_combo2[] = {KC_J, KC_K, KC_L, COMBO_END};
-const uint16_t PROGMEM symbol_combo2[] = {KC_J, KC_I, KC_L, COMBO_END};
-combo_t key_combos[] = {
-    COMBO(number_combo, MO(RGHT)),
-    COMBO(number_combo2, MO(RGHT)),
-    COMBO(symbol_combo, MO(SYMBOLS)),
-    COMBO(symbol_combo2, MO(SYMBOLS)),
-};
+// #define MT_J KC_J
+// #define MT_K KC_K
 
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
@@ -76,12 +63,6 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         KC_LSFT, KC_Z,    KC_X,     KC_C,     KC_V,    KC_B,        KC_N,     KC_M,  KC_COMM,  KC_DOT, KC_SLSH, KC_RSFT,
                        KC_LALT,  KC_LGUI, MO(LEFT), KC_LCTL,      KC_ENT,   KC_SPC, MO(RGHT), KC_RALT
     ),
-    [NO_MOD_TAP] = LAYOUT(
-        KC_TAB,  KC_Q,    KC_W,    KC_E,    KC_R,      KC_T,        KC_Y,    KC_U,     KC_I,   KC_O,    KC_P,  KC_LBRC,
-        KC_BSPC, KC_A,    KC_S,    KC_D,    KC_F,      KC_G,        KC_H,    KC_J,     KC_K,   KC_L, KC_SCLN,  KC_QUOT,
-        KC_LSFT, KC_Z,    KC_X,    KC_C,    KC_V,      KC_B,        KC_N,    KC_M,  KC_COMM, KC_DOT, KC_SLSH,  KC_RSFT,
-                       KC_LALT, KC_LGUI, MO(LEFT),  KC_LCTL,      KC_ENT,  KC_SPC, MO(RGHT), KC_RALT
-    ),
     [CLMK] = LAYOUT(
         KC_TAB,  KC_Q,    KC_W,     KC_F,    KC_P,      KC_G,       KC_J,   KC_L,     KC_U,    KC_Y, KC_SCLN,  KC_LBRC,
         KC_BSPC, KC_A,    KC_R,     KC_S,    KC_T,      KC_D,       KC_H,   KC_N,     KC_E,    KC_I,    KC_O,  KC_QUOT,
@@ -100,30 +81,30 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         _______, XXXXXXX,    KC_1,    KC_2,         KC_3,   KC_DOT,      XXXXXXX,    KC_F1,    KC_F2,    KC_F3,   KC_F12, XXXXXXX,
                           _______, _______, MO(SETTINGS),  _______,      _______,  _______,  _______,  _______
     ),
-    [SYMBOLS] = LAYOUT(
+    [SETTINGS] = LAYOUT(
+        KC_VOLD, KC_VOLU, KC_MPRV, KC_MPLY, KC_MNXT, KC_PSCR,       XXXXXXX, DF(BASE), XXXXXXX, DF(CLMK), XXXXXXX, XXXXXXX,
+        KC_MUTE, XXXXXXX, XXXXXXX, XXXXXXX,  XXXXXXX, XXXXXXX,      XXXXXXX,  SH_TIME, SH_UUID, XXXXXXX, XXXXXXX, XXXXXXX,
+        _______, XXXXXXX, XXXXXXX, XXXXXXX,  XXXXXXX, XXXXXXX,      XXXXXXX, SH_FLASH, XXXXXXX, XXXXXXX, XXXXXXX, _______,
+        XXXXXXX, XXXXXXX, _______, XXXXXXX,         XXXXXXX,        XXXXXXX,  _______, XXXXXXX
+    ),
+    [MOUSE] = LAYOUT(
+        QK_BOOT, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,       MS_WHLU, XXXXXXX,   MS_UP, XXXXXXX, XXXXXXX, XXXXXXX,
+        XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,       MS_WHLD, MS_LEFT, MS_DOWN, MS_RGHT, XXXXXXX, XXXXXXX,
+        _______, XXXXXXX, MS_ACL0, MS_ACL1, MS_ACL2, _______,       XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
+        _______, _______, _______, XXXXXXX,       MS_BTN1, MS_BTN2, _______, XXXXXXX
+    ),
+    [QUICK_NUMBERS] = LAYOUT(
+        _______, XXXXXXX,    KC_7,    KC_8,     KC_9,  XXXXXXX,     XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
+        _______,    KC_0,    KC_4,    KC_5,     KC_6,     KC_0,     XXXXXXX, XXXXXXX, MO(QUICK_SYMBOLS), XXXXXXX, XXXXXXX, XXXXXXX,
+        _______, XXXXXXX,    KC_1,    KC_2,     KC_3,   KC_DOT,     XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
+        _______, _______, _______,  _______,                       _______, _______, _______, _______
+    ),
+    [QUICK_SYMBOLS] = LAYOUT(
         _______, XXXXXXX, S(KC_7), S(KC_8), S(KC_9),  XXXXXXX,      XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX, XXXXXXX, XXXXXXX,
         _______, XXXXXXX, S(KC_4), S(KC_5), S(KC_6),  S(KC_0),      XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX, XXXXXXX, XXXXXXX,
         _______, XXXXXXX, S(KC_1), S(KC_2), S(KC_3),  XXXXXXX,      XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX, XXXXXXX, XXXXXXX,
                           _______, _______, _______,  _______,      _______,  _______,  _______,  _______
     ),
-    [SETTINGS] = LAYOUT(
-        KC_VOLD, KC_VOLU, KC_MPRV, KC_MPLY, KC_MNXT, KC_PSCR,     XXXXXXX, DF(BASE), DF(NO_MOD_TAP), DF(CLMK), XXXXXXX, XXXXXXX,
-        KC_MUTE, XXXXXXX, XXXXXXX, XXXXXXX,  XXXXXXX, XXXXXXX,           XXXXXXX, SH_TIME, SH_UUID, XXXXXXX, XXXXXXX, XXXXXXX,
-        _______, XXXXXXX, XXXXXXX, XXXXXXX,  XXXXXXX,  XXXXXXX,           XXXXXXX, SH_FLASH, XXXXXXX, XXXXXXX, XXXXXXX, _______,
-                          XXXXXXX, XXXXXXX,  _______,  XXXXXXX,           XXXXXXX, XXXXXXX, _______, XXXXXXX
-    ),
-    [MOUSE] = LAYOUT(
-        QK_BOOT, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,       KC_WH_U, XXXXXXX, KC_MS_U, XXXXXXX, XXXXXXX, XXXXXXX,
-        XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,       KC_WH_D, KC_MS_L, KC_MS_D, KC_MS_R, XXXXXXX, XXXXXXX,
-        _______, XXXXXXX, KC_ACL0, KC_ACL1, KC_ACL2, _______,       XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
-                          _______, _______, _______, XXXXXXX,       KC_BTN1, KC_BTN2, _______, XXXXXXX
-    ),
-    [TEMP] = LAYOUT( // NOT IN USE
-        _______, _______, _______, _______, _______, _______,       _______, _______, _______, _______, _______, _______,
-        _______, _______, _______, _______, _______, _______,       _______, _______, _______, _______, _______, _______,
-        _______, _______, _______, _______, _______, _______,       _______, _______, _______, _______, _______, _______,
-                          _______, _______, _______, _______,       _______, _______, _______, _______
-    )
 };
 
 /*
@@ -151,7 +132,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 // True if the operating system is translating to colemak. False if the keyboard
 // is translating to colemak
 bool is_os_colemak(void) {
-    return default_layer_state & (1 << BASE) || default_layer_state & (1 << NO_MOD_TAP);
+    return default_layer_state & (1 << BASE);
 }
 
 /*
@@ -210,9 +191,6 @@ layer_state_t default_layer_state_set_user(layer_state_t state) {
             break;
         case CLMK:
             rgblight_setrgb_at(0, 0, 10, 0);
-            break;
-        case NO_MOD_TAP:
-            rgblight_setrgb_at(10, 0, 0, 0);
             break;
         default:
             rgblight_setrgb_at(0, 0, 0, 0);

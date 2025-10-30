@@ -1,7 +1,7 @@
-QMK_HOME = ${HOME}/workspace/private/keyboards/qmk_firmware
-KEYBOARD = sighol44
+QMK_HOME = ${HOME}/workspace/keyboards/qmk_firmware
+KEYBOARD = sighol/sighol44
 
-BUILD = $(QMK_HOME)/.build/sighol44_default.uf2
+BUILD = $(QMK_HOME)/.build/sighol_sighol44_default.uf2
 TARGET = /mnt/RPI-RP2
 
 build:
