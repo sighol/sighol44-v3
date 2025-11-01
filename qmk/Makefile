@@ -5,7 +5,7 @@ BUILD = $(QMK_HOME)/.build/sighol_sighol44_default.uf2
 TARGET = /mnt/RPI-RP2
 
 build:
-	rm $(BUILD)
+	rm -f $(BUILD)
 	QMK_HOME=$(QMK_HOME) qmk compile -km default -kb $(KEYBOARD)
 	@[[ -f "$(BUILD)" ]] || bash -c "echo build did not produce build target; exit 1"
 
