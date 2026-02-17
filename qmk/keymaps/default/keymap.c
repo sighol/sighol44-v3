@@ -2,8 +2,9 @@
 // SPDX-License-Identifier: GPL-2.0-or-later
 
 #include QMK_KEYBOARD_H
-#include "uuid.h"
 #include "print.h"
+#include "uuid.h"
+#include "send_string_rewrite.h"
 
 
 enum Layers {
@@ -22,6 +23,7 @@ enum custom_keycodes {
     SH_TIME,
     SH_FLASH,
     SH_SYMBOLS,
+    SH_REVIEWABLE,
 };
 
 #define SH_LPAR S(KC_8)
@@ -76,7 +78,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     ),
     [SETTINGS] = LAYOUT(
         KC_VOLD, KC_VOLU, KC_MPRV, KC_MPLY, KC_MNXT, KC_PSCR,       XXXXXXX, DF(BASE), XXXXXXX, DF(CLMK), XXXXXXX, XXXXXXX,
-        KC_MUTE, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,       XXXXXXX,  SH_TIME, SH_UUID, XXXXXXX, XXXXXXX, XXXXXXX,
+        KC_MUTE, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,       XXXXXXX,  SH_TIME, SH_UUID, SH_REVIEWABLE, XXXXXXX, XXXXXXX,
         _______, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,       XXXXXXX, SH_FLASH, XXXXXXX, XXXXXXX, XXXXXXX, _______,
                           XXXXXXX, XXXXXXX, _______, XXXXXXX,       XXXXXXX,  XXXXXXX, _______, XXXXXXX
     ),
@@ -119,39 +121,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
      _______,  _______,  _______,                                _______,                                _______,  _______,  _______,  _______,  _______,  _______)
 };
 
-
 */
 
-// True if the operating system is translating to colemak. False if the keyboard
-// is translating to colemak
-bool is_os_colemak(void) {
-    return default_layer_state & (1 << BASE);
-}
-
-/*
- * If the OS is in colemak mode, we need to type the qwerty key codes that
- * correspond to the letter.
- */
-void colemak_hex_transform(char* buffer, int buffer_size) {
-    for (int i = 0; i < buffer_size; i++) {
-        if (buffer[i] == 0) {
-            return;
-        }
-        switch (buffer[i]) {
-            case 'e': buffer[i] = 'k'; break;
-            case 'd': buffer[i] = 'g'; break;
-            case 'f': buffer[i] = 'e'; break;
-            case 'n': buffer[i] = 'j'; break;
-            case 'i': buffer[i] = 'l'; break;
-            case 's': buffer[i] = 'd'; break;
-            case 'u': buffer[i] = 'i'; break;
-            case 'U': buffer[i] = 'I'; break;
-            case 'p': buffer[i] = 'r'; break;
-            case 't': buffer[i] = 'f'; break;
-            case '=': buffer[i] = '\\'; break;
-        }
-    }
-}
 
 void current_uptime_str(char* buffer, int buffer_size, long unsigned int millis) {
     long unsigned int seconds = millis / 1000;
@@ -204,38 +175,47 @@ void keyboard_post_init_user(void) {
     default_layer_state_set_user(default_layer_state);
 }
 
+void send_uuid(void) {
+    char buffer[150] = { 0 };
+    generate_uuid(buffer, sizeof(buffer));
+    send_string_rewrite(buffer, sizeof(buffer), CLMK);
+    SEND_STRING(buffer);
+}
+
+void send_uptime(void) {
+    char buffer[150] = "Uptime: ";
+    int len = strlen(buffer);
+    long unsigned int millis = timer_read32();
+    current_uptime_str(buffer + len, sizeof(buffer) - len, millis);
+    send_string_rewrite(buffer, sizeof(buffer), CLMK);
+    SEND_STRING(buffer);
+}
+
+void send_reviewable(void) {
+    char buffer[250] =
+        ":unicorn:"
+        " -waiting-for-risk-review"
+        " +waiting-for-team"
+        " +risk-review-ongoing"
+        " +assignee:@sighol";
+    send_string_rewrite(buffer, sizeof(buffer), CLMK);
+    SEND_STRING(buffer);
+}
+
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
-    static char buffer[37];
-    static char current_time_buffer[50];
-
-   switch (keycode) {
-       case SH_UUID:
-            if (record->event.pressed) {
-                memset(buffer, 0, sizeof(buffer));
-                generate_uuid(buffer, sizeof(buffer));
-                if (is_os_colemak()) {
-                    colemak_hex_transform(buffer, sizeof(buffer));
-                }
-                SEND_STRING(buffer);
-            }
-            return false; // Skip all other keycodes
-        case SH_TIME:
-            if (record->event.pressed) {
-                memset(buffer, 0, sizeof(buffer));
-                long unsigned int time = timer_read32();
-                current_uptime_str(current_time_buffer, sizeof(current_time_buffer), time);
-                if (is_os_colemak()) {
-                    colemak_hex_transform(current_time_buffer, sizeof(current_time_buffer));
-                }
-                SEND_STRING(current_time_buffer);
-            }
-            return false;
-        case SH_FLASH:
-            for (int i = 0; i < 4; i++) {
-                rgblight_setrgb_at(255, 255, 255, i);
-            }
-            break;
+    if (record->event.pressed) {
+        switch (keycode) {
+            case SH_UUID: send_uuid(); return false;
+            case SH_TIME: send_uptime(); return false;
+            case SH_REVIEWABLE: send_reviewable(); return false;
+        }
+    }
+    if (keycode == SH_FLASH) {
+        for (int i = 0; i < 4; i++) {
+            rgblight_setrgb_at(255, 255, 255, i);
+        }
+        return true;
     }
     return true;
 }
